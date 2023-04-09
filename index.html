@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+
+        <title>Fitness Walking Tracks</title>
+
+        <link rel="stylesheet" href="style.css"> 
+        <script src="app.js"></script>
+    </head>
+
+    <body>
+
+        
+        <div class="demo-wrap"> 
+            <img
+              class="demo-bg"
+              src="banner.jpeg"
+            >
+
+            <div class="demo-content">
+            
+            <!--two button-->
+                <div id="changeLang">
+                    <input type="button" onclick="showEnglish()" value="English" class="btn">
+                    <input type="button" onclick="showChinese()" value="繁體中文" class="btn"> 
+                </div>
+
+
+            <!--search-->
+                <div id="seachBar">
+                    <div class="container"></div>
+                    <input type="text" class="input" id="engInput" onkeyup="searchEngTable()" placeholder="Search for Title.." title="Type in a title">
+                    <input type="text" class="input" id="chiInput" onkeyup="searchChiTable()" placeholder="搜索路徑.." title="Type in a title">
+                </div>
+            </div>
+
+            <!--district search and button-->
+            <div id="DistrictArea">
+                <select id="Engdistrictselect">
+                    <option value="">ALL</option>
+                    <option value="Central and Western">Central and Western</option>
+                    <option value="Wan Chai">Wan Chai</option>
+                    <option value="Eastern">Eastern</option>
+                    <option value="Southern">Southern</option>
+                    <option value="Sham Shui Po">Sham Shui Po</option>
+                    <option value="Yau Tsim Mong">Yau Tsim Mong</option>
+                    <option value="Wong Tai Sin">Wong Tai Sin</option>
+                    <option value="Tuen Mun">Tuen Mun</option>
+                    <option value="Kwun Tong">Kwun Tong</option>
+                    <option value="Kowloon City">Kowloon City</option>
+                    <option value="Tai Po">Tai Po</option>
+                    <option value="Sai Kung">Sai Kung</option>
+                    <option value="Sha Tin Distict">Sha Tin Distict</option>
+                    <option value="Yuen Long">Yuen Long</option>
+                    <option value="North">North</option>
+                    <option value="Tsuen Wan">Tsuen Wan</option>
+                    <option value="Kwai Tsing">Kwai Tsing</option>
+                    <option value="Islands">Islands</option>
+                 </select>
+                <input type="button" id="EnglishDistrictfuncButton" onclick="EnglishDistrictfunc()" value="Search" class="btn">
+
+                <select id="Chidistrictselect">
+                    <option value="">全部</option>
+                    <option value="中西區">中西區</option>
+                    <option value="灣仔區">灣仔區</option>
+                    <option value="東區">東區</option>
+                    <option value="南區">南區</option>
+                    <option value="深水埗區">深水埗區</option>
+                    <option value="油尖旺區">油尖旺區</option>
+                    <option value="黃大仙區">黃大仙區</option>
+                    <option value="屯門區">屯門區</option>
+                    <option value="觀塘區">觀塘區</option>
+                    <option value="九龍城區">九龍城區</option>
+                    <option value="大埔區">大埔區</option>
+                    <option value="西貢區">西貢區</option>
+                    <option value="沙田區">沙田區</option>
+                    <option value="元朗區">元朗區</option>
+                    <option value="北區">北區</option>
+                    <option value="荃灣區">荃灣區</option>
+                    <option value="葵青區">葵青區</option>
+                    <option value="離島區">離島區</option>
+                 </select>
+                <input type="button" id="ChineseDistrictfuncButton" onclick="ChineseDistrictfunc()" value="搜尋" class="btn">
+            </div> 
+
+            <!--title-->
+                <p id="toptitle">Fitness Walking Tracks</p>       
+           
+        </div>
+        <!--only show Title,HowToAccess button-->
+        <div id="showKeyContents">
+                <button onclick='document.getElementById("tb1").classList.toggle("show1And4")' class="btnOutHeader" id="engKeys">Key Contents only</button>
+                <button onclick='document.getElementById("tb2").classList.toggle("show1And4")' class="btnOutHeader" id="chinKeys">只看關鍵內容</button>
+                <input type="button" id="order" onclick="sortTable()" value="Sort by ascending order" class="btnOutHeader"> 
+        </div>
+        <div id="background">
+
+        <div id="engVer">
+
+            <table id = "tb1" border = "1">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>District</th>
+                        <th>Route</th>
+                        <th>HowToAccess</th>
+                        <th>Map</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+
+        <div id="chiVer">
+            <table id = "tb2" border = "1">
+                <thead>
+                    <tr>
+                        <th>路徑</th>
+                        <th>分區</th>
+                        <th>路徑資料</th>
+                        <th>前往途徑</th>
+                        <th>地圖</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        </div>
+
+
+        <script>
+            document.getElementById("chiVer").style.display = "none";
+            document.getElementById("chiInput").style.display = "none";
+            document.getElementById("Chidistrictselect").style.display = "none";
+            document.getElementById("ChineseDistrictfuncButton").style.display = "none";
+            document.getElementById("chinKeys").style.display = "none";
+
+
+            fetch("mydata.json")
+                .then(response => response.json())
+                .then(data => {
+                    for (var i = 0; i<data.items.length; i++){
+                        let vTitle_en = data.items[i].Title_en;
+                        let vDistrict_en = data.items[i].District_en;
+                        let vRoute_en = data.items[i].Route_en;
+                        let vHowToAccess_en = data.items[i].HowToAccess_en;
+                        let vMapURL_en = data.items[i].MapURL_en;
+                        let vLatitude = data.items[i].Latitude;
+                        let vLongitude = data.items[i].Longitude;
+                            document.querySelector("#tb1").innerHTML += `
+                                <tbody>
+                                    <tr>
+                                        <td>${vTitle_en}</td>
+                                        <td>${vDistrict_en}</td>
+                                        <td>${vRoute_en}</td>
+                                        <td>${vHowToAccess_en}</td>
+                                        <td><img src="${vMapURL_en}" style="width:300px;height:155px;"></td>
+                                    </tr>
+                                <tbody>`;
+                    }
+                })
+
+                fetch("mydata.json")
+                .then(response => response.json())
+                .then(data => {
+                    for (var i = 0; i<data.items.length; i++){
+                        let vTitle_tc = data.items[i].Title_tc;
+                        let vDistrict_tc = data.items[i].District_tc;
+                        let vRoute_tc = data.items[i].Route_tc;
+                        let vHowToAccess_tc = data.items[i].HowToAccess_tc;
+                        let vMapURL_tc = data.items[i].MapURL_tc;
+                        let vLatitude = data.items[i].Latitude;
+                        let vLongitude = data.items[i].Longitude;
+                            document.querySelector("#tb2").innerHTML += `
+                                <tbody>
+                                    <tr>
+                                        <td>${vTitle_tc}</td>
+                                        <td>${vDistrict_tc}</td>
+                                        <td>${vRoute_tc}</td>
+                                        <td>${vHowToAccess_tc}</td>
+                                        <td><img src="${vMapURL_tc}" style="width:300px;height:155px;"></td>
+                                    </tr>
+                                <tbody>`;
+                    }
+                })
+        </script>
+    </body>
+
+</html>

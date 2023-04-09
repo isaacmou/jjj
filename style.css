@@ -1,0 +1,224 @@
+    body {
+        background-image: url('road.jpg');
+        background-repeat: no-repeat;
+        background-attachment: fixed; 
+        background-size: 100% 100%;
+    }
+
+    #toptitle {
+        font-family: "Times New Roman", Times, serif;
+    }
+    
+    /*button*/
+    .btn {
+        margin-top: 4px;
+        margin-left: 6px;
+        background-color: #b7ddc5;
+        border-radius: 100px;
+        box-shadow: rgba(44, 187, 99, .2) 0 -20px 18px -14px inset,rgba(44, 187, 99, .15) 0 1px 2px,rgba(44, 187, 99, .15) 0 2px 4px,rgba(44, 187, 99, .15) 0 4px 8px,rgba(44, 187, 99, .15) 0 8px 16px,rgba(44, 187, 99, .15) 0 16px 32px;
+        color: #105d10;
+        cursor: pointer;
+        font-family: CerebriSans-Regular,-apple-system,system-ui,Roboto,sans-serif;
+        padding: 8px 10px;
+        text-align: center;
+        text-decoration: none;
+        border: 0;
+        font-size: 10px;
+        transition: all 250ms;
+        user-select: none;
+        touch-action: manipulation;
+    }
+      
+    .btn:hover {
+        box-shadow: rgba(44,187,99,.35) 0 -25px 18px -14px inset,rgba(44,187,99,.25) 0 1px 2px,rgba(44,187,99,.25) 0 2px 4px,rgba(44,187,99,.25) 0 4px 8px,rgba(44,187,99,.25) 0 8px 16px,rgba(44,187,99,.25) 0 16px 32px;
+        transform: scale(1.05) rotate(-1deg);
+    }
+
+    #changeLang {
+        position: relative;
+        text-align: left;
+    }
+
+    #showKeyContents {
+        position: relative;
+        text-align: left;
+    }
+
+    /*seach box on top*/
+    #seachBar {
+        position: relative;
+        text-align: right;
+    }
+
+    /*DistrictArea on top*/
+    #DistrictArea {
+        position: relative;
+        text-align: right;
+    }
+    /*DistrictArea hide*/
+    .hide {
+        display: none
+      }
+
+    /*banner*/
+    .demo-wrap {
+        overflow: hidden;
+        position: relative;
+    }
+      
+    .demo-bg {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: auto;
+    }
+      
+    #toptitle {
+        position: relative;
+        font-size: 150%;
+        text-align: center;
+        color: #fff;
+    }
+
+
+    /*Table*/
+    table {
+        width: 100%;
+        border: 0px; 
+    }
+
+    table th {
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    table th, td {
+        background-color: rgba(255,255,255,0.2);
+        color: #fff;
+    }
+
+    table caption {
+        font-size: 1.5em;
+    }
+
+    /* Hide table header. */ 
+    table thead {
+        display:none ;
+    }
+
+
+    table tr { 
+        margin-bottom: 1em;
+
+	}
+
+    table td {
+        text-align: right; 
+        border-bottom: 0px;
+    }
+
+    table td, table tr {
+        display: block;   
+		border: 1px solid #fff; 
+    }
+
+    
+    table td::before {
+        font-weight: bold;
+        float: left;
+        text-transform: uppercase;
+    }
+
+    /*Show Key Contents (Hide District, Route)*/
+    #tb1.show1And4 tr > *:nth-child(2), #tb1.show1And4 tr > *:nth-child(3) {
+        display: none;
+    }
+
+    #tb2.show1And4 tr > *:nth-child(2), #tb2.show1And4 tr > *:nth-child(3) {
+        display: none;
+    }
+
+    /*English version*/
+    #engVer td:nth-of-type(1):before { 
+        content: "Title";
+    }
+    #engVer td:nth-of-type(2):before { 
+        content: "District";
+    }
+    #engVer td:nth-of-type(3):before { 
+        content: "Route";
+    }
+    #engVer td:nth-of-type(4):before { 
+        content: "HowToAccess";
+    }
+    #engVer td:nth-of-type(5):before { 
+        content: "Map";
+    }
+
+
+    /*Chinese version*/
+    #chiVer td:nth-of-type(1):before { 
+        content: "路徑";
+    }
+    #chiVer td:nth-of-type(2):before { 
+        content: "分區";
+    }
+    #chiVer td:nth-of-type(3):before { 
+        content: "路徑資料";
+    }
+    #chiVer td:nth-of-type(4):before { 
+        content: "前往途徑";
+    }
+    #chiVer td:nth-of-type(5):before { 
+        content: "地圖";
+    }
+
+/*seach box*/
+#seachBar{
+    position: absolute;
+    top: 1%;
+    left: 75%;
+    transform: translate(-50%,-50%);
+  }
+  
+.container{
+   position: relative;
+   padding: 20px 50px;
+}
+  
+.input{
+  width: 150px;
+  border: 3px solid #b7ddc5;
+  background: transparent;
+  padding: 5px 10px;
+  border-radius: 50px;
+  outline: none;
+  font-size: 15px;
+  color: #b7ddc5;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+
+select {
+  background-color: #ecf6f0e3;
+  box-shadow: rgba(44, 187, 99, .2) 0 -20px 18px -14px inset,rgba(44, 187, 99, .15) 0 1px 2px,rgba(44, 187, 99, .15) 0 2px 4px,rgba(44, 187, 99, .15) 0 4px 8px,rgba(44, 187, 99, .15) 0 8px 16px,rgba(44, 187, 99, .15) 0 16px 32px;
+  color: #105d10;
+  width: 150px;
+  border: none;
+  font-size: 14px;
+}
+
+.btnOutHeader {
+    padding: 6px 14px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+    border-radius: 6px;
+    border: none;
+    background: #424046;
+    box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1), inset 0px 0.5px 0.5px rgba(255, 255, 255, 0.5), 0px 0px 0px 0.5px rgba(0, 0, 0, 0.12);
+    color: #fffbff;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
